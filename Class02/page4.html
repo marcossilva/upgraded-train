@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>Calculator and JQuery</title>
+	<script type="text/javascript" src="script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		    $("#clear").click(function(){
+		        $("p").empty(500);
+		    });
+		});
+		$(window).unload( function () { alert("Bye now!"); } );
+	</script>
+</head>
+	<style type="text/css">
+	.title{
+		font-family: "Verdana";
+		padding-top: 80px;
+	}
+	.centered-text{
+		font-family: "Verdana";
+		width: 33%;
+		padding-left: 33%;
+		text-align: justify;
+		padding-bottom: 50px;
+	}
+	.footer-bar{
+		width: 50%;	
+		}
+	.footer{
+		font-family: "Verdana";
+		padding: 30px;
+		text-align: center;
+	}
+</style>
+<body onload="setStartDate()">
+	<h1 class = "title"><center>Calculator</center></h1>
+	<br><br>
+	<div class = "centered-text">
+		Value 1:	<input type="text" id="qt1"/><br><br>
+		Value 2:	<input type="text" id="qt2"/><br><br>
+		Operation:
+		<form id="operationToogle">
+		  <input type="radio" name="operation" id="op1" value="Sum" checked> Sum<br>
+		  <input type="radio" name="operation" id="op2" value="Subtraction"> Subtraction<br>
+		  <input type="radio" name="operation" id="op3" value="Multiplication"> Multiplication<br>
+		  <input type="radio" name="operation" id="op4" value="Division"> Division<br>
+		</form>
+		<button id="calc" onclick="calculate()">Calculate</button>
+		<h2>History of Operations</h2>
+		<button id="clear">Erase History</button>
+		<p></p>
+	</div>
+
+
+	<hr class = "footer-bar">
+	<div class = "footer">
+		<a href = "page1.html">About Me</a>
+		<a href = "page2.html">Things That I Like</a>
+		<a href = "page3.html">Contact Me</a>	
+		<a href = "page4.html">Calculator and JQuery</a>
+		<a href = "page5.html">Cool Video and JQuery</a>
+	</div>
+</body>
+</html>
+
+
+<!-- <html>
+<head>
+	<title>Class 02</title>
+	<script type="text/javascript" src="script.js"></script> <!link source to the CDN link>
+</head>
+<body>
+	
+	<input type="text" id="qt1"/><br>
+	<input type="text" id="qt2"/><br>
+
+	<button onclick="showSum()">Click Me!!</button>
+</body>
+</html> -->
