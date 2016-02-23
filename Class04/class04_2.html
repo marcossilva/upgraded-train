@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Datasets</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+	<h1>My Datasets</h1>
+	<div>
+		<p><form id="values" action="class04_1.php" method="post">
+			<label for="tableName">Select Table:</label>
+			<select name="tableName" id="tableName">
+			  <option value="family">Family</option>
+			  <option value="games">Games</option>
+			  <option value="manga">Manga</option>
+			</select>		
+			<button type="button" id="button" value= "Select">Select</button>
+			<div id="family">
+			<table>
+				<tr>		
+					<td><label for="firstName">First Name:</label></td>
+    				<td><input type="text" name="firstname" id="firstName"></td>
+    			</tr>
+
+	    		<tr>
+	    			<td><label for="lastName">Last Name:</label></td>
+	    			<td><input type="text" name="lastName" id="lastName"></td>
+	    		</tr>
+
+	    		<tr>
+	    			<td><label for="age">Age:</label></td>
+	    			<td><input type="text" name="age" id="age"></td>
+	    		</tr>
+    		</table>    		
+			</div>
+			<div id="games">
+			<table>
+				<tr>
+					<td><label for="gameName">Game Name:</label></td>
+					<td><input type="text" name="gameName" id="gameName"></td>
+				</tr>
+
+    			<tr>
+    				<td><label for="addedOn">Added On:</label></td>
+    				<td><input type="text" name="addedOn" id="addedOn"></td>
+    			</tr>
+
+    			<tr>
+    				<td><label for="price">Price:</label></td>
+    				<td><input type="text" name="price" id="price"></td>
+    			</tr>
+			</table>			
+			</div>
+			<div id="manga">
+			<table>
+				<tr>
+					<td><label for="name">Name:</label></td>
+					<td><input type="text" name="name" id="name"></td>
+				</tr>
+
+    			<tr>
+    				<td><label for="lastChapter">Last Chapter:</label></td>
+    				<td><input type="text" name="lastChapter" id="lastChapter"></td>
+    			</tr>
+
+    			<tr>
+    				<td><label for="mangaka">Mangaka:</label></td>
+    				<td><input type="text" name="mangaka" id="mangaka"></td>
+    			</tr>    			
+
+    			<tr>
+    				<td><label for="firstCh">First Chapter Year:</label></td>
+    				<td><input type="text" name="firstCh" id="firstCh"></td>
+    			</tr>
+			</table>			
+			</div>
+			<button id = "submit">Submit</button>		
+		</form></p>
+	</div>
+	<span id="result"></span>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("form div").each(function(index){
+		    		$(this).hide();
+		    });
+		    $("#button").click(function( event ){
+		    	$("form div").each(function(index){
+		    		$(this).hide();
+		    	});
+
+		    	$("#"+$("#tableName").val()).toggle("slow");
+		    });
+		});
+
+		$("#submit").click( function(){
+			$.post($("#values").attr("action"), $("#values :input").serializeArray(), function(info){
+				$("#result").html(info);
+			});
+		});
+		$("#values").submit(function(){
+			return false;
+		});
+
+	</script>
+</body>
+</html>
