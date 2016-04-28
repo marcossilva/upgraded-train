@@ -1,14 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wc2</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>WC2</title>
+	<%= stylesheet_link_tag		'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+  <style type="text/css">
+    /* Sticky footer styles
+    -------------------------------------------------- */
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+    body {
+      /* Margin bottom by footer height */
+      margin-bottom: 60px;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      /* Set the fixed height of the footer here */
+      height: 60px;
+      background-color: #f5f5f5;
+    }
+
+
+    /* Custom page CSS
+    -------------------------------------------------- */
+    /* Not required for template or sticky footer method. */
+
+    .container {
+      width: auto;
+      max-width: 680px;
+      padding: 0 15px;
+    }
+    .container .text-muted {
+      margin: 20px 0;
+    }
+  </style>
 </head>
 <body>
 
-<%= yield %>
-
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <%3.times do %>
+        	<span class="icon-bar"></span>
+        <% end %>
+      </button>
+      <%= link_to "WordCloud2",root_path, class: "navbar-brand"%>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav navbar-right">
+	    	<% if current_user %>
+				<!-- <li>Signed in as: <%= current_user.name %></li> -->
+				<li><%= link_to "Sign Out", "sign_out", method: :delete %></li>
+			<% else %>
+				<li><%= link_to "auth/facebook" do %>Login <i class="fa fa-facebook-square" aria-hidden="true"></i><% end %></li>
+			<% end %>
+    	</ul>
+    </div>
+  </div>
+</nav>
+<div id="main-container" class="container">
+	<% flash.each do |key, value| %>
+		<div class="alert alert-info"><%= value %></div>
+	<% end %>
+  <%= yield %>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted pull-right">
+      <%= link_to "/about" do %><i class="fa fa-book" aria-hidden="true"></i> About <% end %> 
+      <%= link_to "/privacy" do %><i class="fa fa-bars" aria-hidden="true"></i> Privacy Statement<% end %>
+    </p>
+  </div>
+</footer>
 </body>
 </html>
